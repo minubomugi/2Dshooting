@@ -25,7 +25,7 @@ public class Playermove : MonoBehaviour
 
         Vector2 direction = new Vector2(h,v); //왼쪽 방향
         Vector2 nomalizedSpeed = (direction * Speed).normalized;//벡터의 길이를 1로 만들어주는 것(즉, 방향만 유지한다.)
-        transform.Translate(direction * Speed* Time.deltaTime);
+        transform.Translate(direction * (Speed * Time.deltaTime));
         // deltaTime: 이전 프레임으로부터 지금 프레임 까지 시간이 얼마나 지났는지 ms(천분의 1초)로 반환
         
         // 실습과제 1 특정 영역에서만 캐릭터 이동

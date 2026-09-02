@@ -67,9 +67,8 @@ public class assignmnet0902 : MonoBehaviour
         if (transform.position.x > limit)
         {
             transform.position = new Vector3(-limit, transform.position.y, 0);
-                    
-            //이동
-            transform.Translate(nomalizedDirection * (Speed * Time.deltaTime));
         }
+        //이동
+        transform.Translate(nomalizedDirection * (Speed * Time.deltaTime));
     }
 }
