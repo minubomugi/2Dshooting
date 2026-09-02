@@ -3,32 +3,32 @@ using UnityEngine;
 public class assignmnet0902 : MonoBehaviour
 {
     public float Speed;
+    public float limit;
 
     private void Update()
     {
         //똑같이 이동할 수 있는 거 처리
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
-        int limit = 3;
-        Vector2 direction = new Vector2(h, v);
-        Vector2 nomalizedSpeed = new Vector2(Speed, Speed).normalized;
+        Vector2 nomalizedDirection = new Vector2(h, v).normalized;
+        Vector2 newPosition = transform.position + (Vector3)nomalizedDirection * (Speed * Time.deltaTime);
        
         //실습 과제 1 특정 영역 안에서만 캐릭터가 이동할 수 있게        
         if (transform.position.y < -limit)
         {
-            v = Mathf.Max(Input.GetAxis("Vertical"),0f);
+            v = -limit;
         }
         if (transform.position.x < -limit)
         {
-            h = Mathf.Max(Input.GetAxis("Horizontal"),0f);
+            h = -limit;
         }
         if (transform.position.y > limit)
         {
-            v = Mathf.Min(Input.GetAxis("Vertical"),0f);
+            v = limit;
         }
         if (transform.position.x > limit)
         {
-            h = Mathf.Min(Input.GetAxis("Horizontal"),0f);
+            h = limit;
         }
         
         //실습 과제 2 좌우 이동에 있어 쭈욱 이동시 반대쪽에서 나오기
@@ -60,6 +60,6 @@ public class assignmnet0902 : MonoBehaviour
         }
         
         //이동
-        transform.Translate(direction*nomalizedSpeed * Time.deltaTime);
+        transform.Translate(nomalizedDirection * (Speed * Time.deltaTime));
     }
 }
