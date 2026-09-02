@@ -10,9 +10,34 @@ public class PlayerFire : MonoBehaviour
     public Transform LeftFirePointTransform;
     public Transform RightFirePointTransform;
     
+    // 쿨타이머
+    public float CoolTime = 0.5f;
+    public float CoolTimer = 0;
+
+    private void Start()
+    {
+        CoolTimer = CoolTime;
+    }
+
     private void Update()
     {
-        //1. 스페이스바를 누르면
+        // 0.쿨타이머 감소
+        CoolTimer -= Time.deltaTime;
+        
+        // 1. 쿨타이머가 0초이하이고 같이 스페이스바 누르면
+        if (CoolTimer <= 0 && Input.GetKeyDown(KeyCode.Space))
+        {
+            // 2. 발사
+            Fire();
+            
+            // 3. 쿠라이머 초기화
+            CoolTimer = CoolTime;
+        }
+    }
+    
+    //1. 스페이스바를 누르면
+    private void Fire()
+    {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             //2. 총알 프리팹을 생성한다.
