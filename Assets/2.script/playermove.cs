@@ -26,7 +26,7 @@ public class Playermove : MonoBehaviour
         Vector2 direction = new Vector2(h,v); //왼쪽 방향
         
         //새로운 위치는 = 현재 위치 + (방향 * 속력 * 시간)
-        // transform.position += (Vector3)direction * Speed * Time.deltaTime;
+        //transform.position += (Vector3)direction * Speed * Time.deltaTime;
         
 // 1. 키보드 입력을 받는다.
         // 유니티는 다른 기능도 해준다 오른쪽 코드를 ->if (Input.GetKey(KeyCode.LeftArrow))
@@ -41,7 +41,8 @@ public class Playermove : MonoBehaviour
         // 매개변수 속도 = 방향 * 속력               //매직 넘버란; 보는 사람에 따라 의미가 달라지는 것
         // 헷갈리는 숫자, 코드에는 숫자 있으면 안됨
         // 그래서 변수 넣어야 해
-        //   transform.Translate(direction * Speed* Time.deltaTime);
+        Vector2 nomalizedSpeed = (direction * Speed).normalized;//벡터의 길이를 1로 만들어주는 것(즉, 방향만 유지한다.)
+        transform.Translate(direction * Speed* Time.deltaTime);
         // deltaTime: 이전 프레임으로부터 지금 프레임 까지 시간이 얼마나 지났는지 ms(천분의 1초)로 반환
     }
 }
