@@ -34,10 +34,12 @@ public class BulletMove : MonoBehaviour
         {
             //나죽고
             Destroy(this.gameObject);
-            
+
             // Get component<타입>() -> 게임 오브젝트가 갖고 있는 컴포넌트를참조
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-            enemy.Health -= 40;
+
+            //발사체 크기에 따른 데미지 차이 부여
+            enemy.Health -= Damage;
             if (enemy.Health <= 0)
             {
                 //너 죽자
