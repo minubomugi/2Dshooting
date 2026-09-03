@@ -32,42 +32,49 @@ public class assignmnet0902 : MonoBehaviour
         float v = Input.GetAxis("Vertical");
         Vector2 nomalizedDirection = new Vector2(h, v).normalized;
         Vector2 newPosition = transform.position + (Vector3)nomalizedDirection * (Speed * Time.deltaTime);
-       
+
         //실습 과제 1 특정 영역 안에서만 캐릭터가 이동할 수 있게        
         if (transform.position.y < -limit)
         {
             v = -limit;
         }
+
         if (transform.position.x < -limit)
         {
             h = -limit;
         }
+
         if (transform.position.y > limit)
         {
             v = limit;
         }
+
         if (transform.position.x > limit)
         {
             h = limit;
         }
-        
+
         //실습 과제 2 좌우 이동에 있어 쭈욱 이동시 반대쪽에서 나오기
         if (transform.position.y < -limit)
         {
             transform.position = new Vector3(transform.position.x, limit, 0);
         }
+
         if (transform.position.x < -limit)
         {
             transform.position = new Vector3(limit, transform.position.y, 0);
         }
+
         if (transform.position.y > limit)
         {
             transform.position = new Vector3(transform.position.x, -limit, 0);
         }
+
         if (transform.position.x > limit)
         {
             transform.position = new Vector3(-limit, transform.position.y, 0);
         }
+
         //이동
         transform.Translate(nomalizedDirection * (Speed * Time.deltaTime));
     }
