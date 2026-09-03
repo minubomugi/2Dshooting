@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         Vector2 direction = new Vector2(0, player.transform.position.y - transform.position.y).normalized;
-        transform.Translate(direction * (Movespeed * Time.deltaTime), Space.World);
+        transform.Translate(direction * (Movespeed * Time.deltaTime));
     }
 
     // 09/03 수업 과제 3-3
@@ -31,6 +31,6 @@ public class Enemy : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         Vector2 direction = ((Vector2)player.transform.position
                              - (Vector2)transform.position).normalized;
-        transform.Translate(direction * (Movespeed * Time.deltaTime), Space.World);
+        transform.Translate(direction * (Movespeed * Time.deltaTime));
     }
 }
