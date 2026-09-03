@@ -131,6 +131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Left Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 1305129857001021827, guid: 193f564392abe0b44b0a32d05e508125, type: 3}
+      propertyPath: Movespeed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1743525280593385640, guid: 193f564392abe0b44b0a32d05e508125, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
@@ -610,6 +614,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Right Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 1305129857001021827, guid: 193f564392abe0b44b0a32d05e508125, type: 3}
+      propertyPath: Movespeed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1743525280593385640, guid: 193f564392abe0b44b0a32d05e508125, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
@@ -767,6 +775,10 @@ PrefabInstance:
     - target: {fileID: 948488246480799583, guid: 193f564392abe0b44b0a32d05e508125, type: 3}
       propertyPath: m_Name
       value: Boss Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1305129857001021827, guid: 193f564392abe0b44b0a32d05e508125, type: 3}
+      propertyPath: Movespeed
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 1743525280593385640, guid: 193f564392abe0b44b0a32d05e508125, type: 3}
       propertyPath: m_LocalPosition.x

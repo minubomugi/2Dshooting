@@ -1,17 +1,29 @@
 using UnityEngine;
 
-public class EnemyMove : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
-    public float speed;
+    public float Health = 100;
+    public float Movespeed;
 
-    private void Update()   
+    private void Update()
     {
-        Enemy();
+        PlayerDirectionMove();
     }
 
-    private void Enemy()
+    private void EnemyMove()
     {
         Vector2 direction = Vector2.up;
-        transform.Translate(direction * (speed * Time.deltaTime));
+        transform.Translate(direction * (Movespeed * Time.deltaTime));
+    }
+
+    private void PlayerDirectionMove()
+    {
+        Vector2 direction = ((Vector2)GameObject.FindGameObjectWithTag("Player").transform.position
+                             - (Vector2)transform.position).normalized;
+        transform.Translate(direction * (Movespeed * Time.deltaTime));
+    }
+
+    private void PlayerChase()
+    {
     }
 }
