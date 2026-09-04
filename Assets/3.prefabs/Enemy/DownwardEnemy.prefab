@@ -185,3 +185,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DownawadEnemy
   _health: 100
   _movespeed: 3
+  _damage: 50

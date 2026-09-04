@@ -26,7 +26,10 @@ public class EnemySpawner : MonoBehaviour
 
     private void spawn()
     {
-        Enemy enemy = Instantiate(_enemyPrefab);
-        enemy.transform.position = transform.position;
+        if (GameObject.FindGameObjectWithTag("Player") != null)
+        {
+            Enemy enemy = Instantiate(_enemyPrefab);
+            enemy.transform.position = transform.position;
+        }
     }
 }

@@ -185,3 +185,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AimedEnemy
   _health: 50
   _movespeed: 5
+  _damage: 10
