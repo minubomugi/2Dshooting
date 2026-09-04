@@ -17,6 +17,9 @@ public class EnemySpawner : MonoBehaviour
         if (_timer >= _spawninterval)
         {
             _timer = 0;
+
+            _spawninterval = Random.Range(1f, 3f); // 1~3 초 사이 랜덤 배출
+
             spawn();
         }
     }
