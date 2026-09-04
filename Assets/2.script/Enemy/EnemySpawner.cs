@@ -11,7 +11,7 @@ public class EnemySpawner : MonoBehaviour
     private float[] _enemypercent = { 0.5f, 0.3f, 0.2f };
 
     //생성할 프리팹
-    [Header("스폰할 적 프리팹")] [SerializeField] private Enemy[] _enemyPrefab;
+    [Header("스폰할 적 프리팹")] [SerializeField] private Enemy[] _enemyPrefabs;
 
     private void Update()
     {
@@ -37,6 +37,9 @@ public class EnemySpawner : MonoBehaviour
     //      }
     //  }
 
+    // Todo: Scriptable Object를 이용해서 리팩토링
+    // 이유: 배열을 사용했지만 각 아이템이 어떤 프리펩인지 알 수 없음
+    // 이유2: 각 에너미 스폰 확률을 매직넘버로 하드코딩해서 유지보수가 어렵고 가독성 저하
     private void RandomSpawn()
     {
         if (GameObject.FindGameObjectWithTag("Player") != null)
@@ -56,7 +59,7 @@ public class EnemySpawner : MonoBehaviour
                 _randomEnemy = 2;
             }
 
-            Enemy enemy = Instantiate(_enemyPrefab[_randomEnemy]);
+            Enemy enemy = Instantiate(_enemyPrefabs[_randomEnemy]);
             enemy.transform.position = transform.position;
         }
     }
