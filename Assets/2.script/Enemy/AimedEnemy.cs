@@ -11,7 +11,12 @@ public class AimedEnemy : Enemy
 
     protected override void Move()
     {
-        if (_player == null) return;
+        Player player = GameObject.Find("Player").GetComponent<Player>();
+        if (player == null)
+        {
+            Debug.LogWarning("Null값 보셈");
+            return;
+        }
 
         Vector2 direction = new Vector2(0, _player.transform.position.y - transform.position.y).normalized;
         transform.Translate(direction * (_movespeed * Time.deltaTime));
