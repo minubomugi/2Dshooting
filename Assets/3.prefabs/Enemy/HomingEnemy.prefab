@@ -183,5 +183,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55c88ada0b0b402d8e9769f35124966f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HomigEnemy
-  _health: 100
-  _movespeed: 0
+  _health: 75
+  _movespeed: 7
