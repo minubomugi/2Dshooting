@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class AimedEnemy : Enemy
 {
-    private GameObject _player;
-
     private void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
