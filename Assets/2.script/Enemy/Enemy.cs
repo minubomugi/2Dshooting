@@ -28,12 +28,12 @@ public abstract class Enemy : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Playerhp playerhp = other.GetComponent<Playerhp>();
-            if (playerhp != null)
+            Player player = other.GetComponent<Player>();
+            if (player != null)
             {
                 float damage = _movespeed * _damage;
 
-                playerhp.TakeDamage(damage);
+                player.TakeDamage(damage);
             }
 
             //나죽고
