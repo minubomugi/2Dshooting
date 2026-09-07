@@ -8,6 +8,8 @@ public class assignmnet0902 : MonoBehaviour
     // 애니메이터 참조
     [SerializeField] private Animator _animator;
 
+    //플레이 방식도 있는데, 얘는 애니메이션을 처음부터 자꾸 실행하려고 하는 문제점이 있다.
+
     //객체가 생성될 때 한 번 실행
     private void Awake()
     {
