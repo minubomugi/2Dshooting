@@ -3,6 +3,8 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     //필요속성
+    private GameObject _player;
+
     // - 타이머
     [Header("스폰 간격")] [SerializeField] private float _spawninterval = 3f;
     private float _timer;
@@ -12,6 +14,11 @@ public class EnemySpawner : MonoBehaviour
 
     //생성할 프리팹
     [Header("스폰할 적 프리팹")] [SerializeField] private Enemy[] _enemyPrefabs;
+
+    private void Start()
+    {
+        _player = GameObject.FindGameObjectWithTag("Player");
+    }
 
     private void Update()
     {
@@ -42,7 +49,7 @@ public class EnemySpawner : MonoBehaviour
     // 이유2: 각 에너미 스폰 확률을 매직넘버로 하드코딩해서 유지보수가 어렵고 가독성 저하
     private void RandomSpawn()
     {
-        if (GameObject.FindGameObjectWithTag("Player"))
+        if (_player)
         {
             float _random = Random.Range(0f, 1f);
             int _randomEnemy = 0;

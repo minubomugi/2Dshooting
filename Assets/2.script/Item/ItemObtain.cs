@@ -2,49 +2,77 @@ using UnityEngine;
 
 public class ItemObtain : MonoBehaviour
 {
-    // 아이템 획득 쿨타임 적용
+    // 아이템 획득 쿨타임
     [Header("아이템 획득 쿨타임")] [SerializeField]
-    private const float _coolTimer = 1.0f;
+    private float _coolTimer = 1.0f;
 
     private float _dropTimer;
-    [Header("아이템 이동 속도")] [SerializeField] private const float _itemSpeed = 5f;
+
+    // 아이템 이동 속도
+    [Header("아이템 이동 속도")] [SerializeField] private float _itemSpeed = 5f;
 
     // 아이템 종류
     [SerializeField] private ItemType Type;
     [SerializeField] private float Value;
 
-    // 생성과 동시에 시간 저장
+    // 캐싱
+    private Player _player;
+    private Transform _playerTransform;
+    private assignmnet0902 _move;
+    private PlayerFire[] _playerFires;
+
+
+    // 생성과 동시에 시간 저장 및 캐싱
     private void Start()
     {
         _dropTimer = Time.time;
+
+        GameObject player = GameObject.FindWithTag("Player");
+
+        if (player == null)
+        {
+            Debug.LogWarning("Player 태그를 가진 오브젝트가 없습니다.");
+            return;
+        }
+
+        _player = player.GetComponent<Player>();
+        _playerTransform = player.transform;
+        _move = player.GetComponent<assignmnet0902>();
+        _playerFires = player.GetComponents<PlayerFire>();
     }
 
-    // 일정 시간 지난 후 이동
+
     private void Update()
     {
         ItemMove();
     }
 
+
+    // 일정 시간이 지난 후 플레이어 방향으로 이동
     private void ItemMove()
     {
+        if (_playerTransform == null)
+            return;
+
         if (Time.time - _dropTimer > _coolTimer)
         {
-            Player player = GameObject.FindWithTag("Player").GetComponent<Player>();
-            Vector2 direction = ((Vector2)player.transform.position
-                                 - (Vector2)transform.position).normalized;
+            Vector2 direction =
+                ((Vector2)_playerTransform.position - (Vector2)transform.position).normalized;
+
             transform.Translate(direction * (_itemSpeed * Time.deltaTime));
         }
     }
 
-    // 플레이어에게 닿을 시 아이템 삭제
+
+    // 플레이어에게 닿았을 때 아이템 효과 적용
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.CompareTag("Player")) return;
+        if (!other.CompareTag("Player"))
+            return;
 
-        Player player = other.GetComponent<Player>();
-        if (player == null)
+        if (_player == null)
         {
-            Debug.LogWarning("플레이어 태그 오브젝트에 플레이어 컴포넌트가 없습니다.");
+            Debug.LogWarning("Player 컴포넌트를 찾을 수 없습니다.");
             return;
         }
 
@@ -52,17 +80,15 @@ public class ItemObtain : MonoBehaviour
         {
             case ItemType.Heal:
             {
-                player.TakeDamage((int)(Value * -1));
+                _player.TakeDamage((int)(Value * -1));
                 break;
             }
 
             case ItemType.MoveSpeedUp:
             {
-                assignmnet0902 move = player.GetComponent<assignmnet0902>();
-
-                if (move != null)
+                if (_move != null)
                 {
-                    move._speed = Mathf.Min(10f, move._speed + Value);
+                    _move._speed = Mathf.Min(10f, _move._speed + Value);
                 }
 
                 break;
@@ -70,18 +96,15 @@ public class ItemObtain : MonoBehaviour
 
             case ItemType.FireRateUp:
             {
-                PlayerFire[] playerFires = player.GetComponents<PlayerFire>();
-
-                foreach (PlayerFire playerFire in playerFires)
+                foreach (PlayerFire playerFire in _playerFires)
                 {
-                    playerFire.CoolTime =
-                        Mathf.Max(0.1f, playerFire.CoolTime - Value);
+                    playerFire.CoolTime = Mathf.Max(0.1f, playerFire.CoolTime - Value);
                 }
 
                 break;
             }
         }
 
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 }
