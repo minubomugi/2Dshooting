@@ -581,8 +581,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 502c4ec6f23840308893b7421c0f1e3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::assignmnet0902
-  Speed: 5
-  limit: 8
+  _speed: 5
+  _limit: 5
 --- !u!114 &408024277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -649,7 +649,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
