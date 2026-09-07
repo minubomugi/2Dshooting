@@ -42,7 +42,7 @@ public class EnemySpawner : MonoBehaviour
     // 이유2: 각 에너미 스폰 확률을 매직넘버로 하드코딩해서 유지보수가 어렵고 가독성 저하
     private void RandomSpawn()
     {
-        if (GameObject.FindGameObjectWithTag("Player") != null)
+        if (GameObject.FindGameObjectWithTag("Player"))
         {
             float _random = Random.Range(0f, 1f);
             int _randomEnemy = 0;
