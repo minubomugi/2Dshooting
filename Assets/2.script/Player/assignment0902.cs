@@ -5,6 +5,16 @@ public class assignmnet0902 : MonoBehaviour
     public float _speed;
     [SerializeField] private float _limit;
 
+    // 애니메이터 참조
+    [SerializeField] private Animator _animator;
+
+    //객체가 생성될 때 한 번 실행
+    private void Awake()
+    {
+        // 애니메이터 컴포넌트에 대한 참조를 가져와서 할당한다.
+        _animator = GetComponent<Animator>();
+    }
+
     private void Update() //객체의 이벤트래
     {
         Move();
@@ -32,6 +42,7 @@ public class assignmnet0902 : MonoBehaviour
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
         Vector2 nomalizedDirection = new Vector2(h, v).normalized;
+        _animator.SetInteger(name: "x", (int)nomalizedDirection.x);
         Vector2 newPosition = transform.position + (Vector3)nomalizedDirection * (_speed * Time.deltaTime);
 
         //실습 과제 1 특정 영역 안에서만 캐릭터가 이동할 수 있게        
