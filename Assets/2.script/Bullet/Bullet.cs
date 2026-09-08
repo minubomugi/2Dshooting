@@ -23,14 +23,12 @@ public class BulletMove : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            //나죽고
-            Destroy(this.gameObject);
-
             // Get component<타입>() -> 게임 오브젝트가 갖고 있는 컴포넌트를참조
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
 
             //발사체 크기에 따른 데미지 차이 부여
             enemy.TakeDamage(Damage);
+            Destroy(this.gameObject);
         }
     }
 

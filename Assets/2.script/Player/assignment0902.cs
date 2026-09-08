@@ -24,7 +24,6 @@ public class assignmnet0902 : MonoBehaviour
         //InputSpeedKey() -> 옛날에 명령받아서 진행하는 입력받아 하는 기능중심 명명법
     }
 
-
     private void SpeedChange()
     {
         //실습 과제 3 e버튼 누르면 스피드 업, q버튼누르면 스피드 1다운

@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BulletMove
   MoveSpeed: 20
-  Damage: 20
+  Damage: 25
 --- !u!60 &804019913537347837
 PolygonCollider2D:
   m_ObjectHideFlags: 0

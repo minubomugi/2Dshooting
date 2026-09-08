@@ -16,6 +16,14 @@ public abstract class Enemy : MonoBehaviour
     [Header("스폰할 아이템 프리팹")] [SerializeField]
     private GameObject[] _itemPrefabs;
 
+    // 애니메이터 연결
+    [SerializeField] private Animator _animator;
+
+    private void Awake()
+    {
+        _animator = GetComponent<Animator>();
+    }
+
     private void Update()
     {
         Move();
@@ -34,7 +42,9 @@ public abstract class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        Debug.Log(damage);
         _health -= damage;
+        _animator.SetTrigger("Bullet Hit");
         if (_health <= 0)
         {
             Destroy(gameObject);
