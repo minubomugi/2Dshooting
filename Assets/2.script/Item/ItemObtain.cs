@@ -81,6 +81,7 @@ public class ItemObtain : MonoBehaviour
             case ItemType.Heal:
             {
                 _player.TakeDamage((int)(Value * -1));
+                Debug.Log($"플레이어 체력: {_player.GetHealth()}");
                 break;
             }
 
@@ -88,7 +89,7 @@ public class ItemObtain : MonoBehaviour
             {
                 if (_move != null)
                 {
-                    _move._speed = Mathf.Min(10f, _move._speed + Value);
+                    _move.Speed = Mathf.Min(10f, _move.Speed + Value);
                 }
 
                 break;

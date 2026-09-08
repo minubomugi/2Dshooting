@@ -2,8 +2,15 @@ using UnityEngine;
 
 public class assignmnet0902 : MonoBehaviour
 {
-    public float _speed;
-    [SerializeField] private float _limit;
+    [SerializeField] private float _speed;
+
+    public float Speed
+    {
+        get { return _speed; }
+        set { _speed = value; }
+    }
+
+    private float _limit;
 
     // 애니메이터 참조
     [SerializeField] private Animator _animator;
@@ -15,6 +22,11 @@ public class assignmnet0902 : MonoBehaviour
     {
         // 애니메이터 컴포넌트에 대한 참조를 가져와서 할당한다.
         _animator = GetComponent<Animator>();
+    }
+
+    public float GetSpeed()
+    {
+        return _speed;
     }
 
     private void Update() //객체의 이벤트래
