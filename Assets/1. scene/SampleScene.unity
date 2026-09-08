@@ -485,6 +485,7 @@ GameObject:
   - component: {fileID: 408024279}
   - component: {fileID: 408024281}
   - component: {fileID: 408024282}
+  - component: {fileID: 408024283}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -711,6 +712,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Playerhp
   _hp: 100
+  _deathEffectPrefab: {fileID: 4593184484909914552, guid: 2e1e9506f5904a64b81744324fb7cd50, type: 3}
+  _obtainEffectPrefab: []
 --- !u!95 &408024282
 Animator:
   serializedVersion: 7
@@ -733,6 +736,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &408024283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 408024271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0091dcf7b5616a48a4d474e378a5160, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerItemEffect
+  _itemEffectprefab:
+  - {fileID: 6263782476919498309, guid: 1fd2749f2a4056446881dce86ed70c39, type: 3}
+  - {fileID: 888444077320411739, guid: 0c2509361b13505428ce788b7f846686, type: 3}
+  - {fileID: 8525990746615576120, guid: b85d21f3b8fed714bacf0c4fd50fa512, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
