@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     // - 메서드를 통한 상태 변경
     // 플레이어 체력 입력 받는 것
     [Header("플레이어 체력")] [SerializeField] private int _hp = 100;
+    [SerializeField] private GameObject _deathEffectPrefab;
 
     // getter/setter : 특정 데이터를 get/set 해주는 메서드
     public int GetHealth()
@@ -40,6 +41,7 @@ public class Player : MonoBehaviour
         Health -= damage;
         if (Health <= 0)
         {
+            Instantiate(_deathEffectPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

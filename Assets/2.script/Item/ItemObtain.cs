@@ -8,6 +8,9 @@ public class ItemObtain : MonoBehaviour
 
     private float _dropTimer;
 
+    // 아이템 획득 연출
+    [SerializeField] private GameObject _obtainEffectPrefab;
+
     // 아이템 이동 속도
     [Header("아이템 이동 속도")] [SerializeField] private float _itemSpeed = 5f;
 
@@ -106,6 +109,8 @@ public class ItemObtain : MonoBehaviour
             }
         }
 
+        // 연출 효과
+        Instantiate(_obtainEffectPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }
