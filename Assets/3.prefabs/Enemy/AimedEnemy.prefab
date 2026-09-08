@@ -192,6 +192,7 @@ MonoBehaviour:
   _health: 50
   _movespeed: 5
   _damage: 10
+  _deathEffectPrefab: {fileID: 2433282508537954060, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312, type: 3}
   _dropPercent: 0.3
   _itemPrefabs:
   - {fileID: 7483503027990978194, guid: 8041dfca8cac88b4b93b9960ca87ea51, type: 3}

@@ -9,6 +9,9 @@ public abstract class Enemy : MonoBehaviour
 
     [SerializeField] protected float _damage;
 
+    // 죽을 때 생성할 이펙트 프리펩
+    [SerializeField] private GameObject _deathEffectPrefab;
+
     // 아이템 확률
     [Header("아이템 스폰 확률")] [SerializeField] private float _dropPercent = 0.3f;
 
@@ -47,6 +50,7 @@ public abstract class Enemy : MonoBehaviour
         _animator.SetTrigger("Bullet Hit");
         if (_health <= 0)
         {
+            Instantiate(_deathEffectPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
             Itemdrop();
         }

@@ -10,7 +10,7 @@ public class assignmnet0902 : MonoBehaviour
         set { _speed = value; }
     }
 
-    private float _limit;
+    [SerializeField] private float _limit;
 
     // 애니메이터 참조
     [SerializeField] private Animator _animator;

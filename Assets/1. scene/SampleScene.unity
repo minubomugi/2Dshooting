@@ -584,7 +584,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::assignmnet0902
   _speed: 5
   _limit: 5
-  _animator: {fileID: 0}
+  _animator: {fileID: 408024282}
 --- !u!114 &408024277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -710,7 +710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a0ad008e38048bc9e3868c59ba9b21d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Playerhp
-  _hp: 100000
+  _hp: 100
 --- !u!95 &408024282
 Animator:
   serializedVersion: 7
