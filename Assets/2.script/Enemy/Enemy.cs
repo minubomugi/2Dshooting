@@ -62,7 +62,7 @@ public abstract class Enemy : MonoBehaviour
             {
                 float damage = _movespeed * _damage;
 
-                player.TakeDamage(damage);
+                player.TakeDamage((int)damage);
             }
 
             //나죽고
