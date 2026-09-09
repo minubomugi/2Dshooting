@@ -12,6 +12,9 @@ public abstract class Enemy : MonoBehaviour
         get { return _health; }
     }
 
+    //오디오 생성
+    private AudioSource _damagedAudioSource;
+
     [SerializeField] protected float _movespeed;
 
     [SerializeField] protected float _damage;
@@ -32,6 +35,7 @@ public abstract class Enemy : MonoBehaviour
     private void Awake()
     {
         _animator = GetComponent<Animator>();
+        _damagedAudioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -55,6 +59,7 @@ public abstract class Enemy : MonoBehaviour
         Debug.Log(damage);
         _health -= damage;
         _animator.SetTrigger("Bullet Hit");
+        _damagedAudioSource.Play();
         if (_health <= 0)
         {
             Instantiate(_deathEffectPrefab, transform.position, Quaternion.identity);

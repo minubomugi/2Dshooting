@@ -14,7 +14,9 @@ public class ItemObtain : MonoBehaviour
 
     // 애니메이션
     private Animator _animator;
-    private bool _isAnimationPlayed = false;
+
+    // 오디오
+    [SerializeField] private AudioSource _itemMoveAudioSource;
 
     // 아이템 이동 속도
     [Header("아이템 이동 속도")] [SerializeField] private float _itemSpeed = 5f;
@@ -35,6 +37,7 @@ public class ItemObtain : MonoBehaviour
         _dropTimer = Time.time;
         _animator = GetComponentInChildren<Animator>();
         GameObject player = GameObject.FindWithTag("Player");
+        _itemMoveAudioSource = GetComponent<AudioSource>();
 
         if (player == null)
         {
@@ -65,10 +68,7 @@ public class ItemObtain : MonoBehaviour
         if (Time.time - _dropTimer > _coolTimer)
         {
             _animator.enabled = true;
-            _isAnimationPlayed = true;
-            Vector2 direction =
-                ((Vector2)_playerTransform.position - (Vector2)transform.position).normalized;
-
+            Vector2 direction = ((Vector2)_playerTransform.position - (Vector2)transform.position).normalized;
             transform.Translate(direction * (_itemSpeed * Time.deltaTime));
         }
     }
@@ -109,7 +109,7 @@ public class ItemObtain : MonoBehaviour
             {
                 foreach (PlayerFire playerFire in _playerFires)
                 {
-                    playerFire.CoolTime = Mathf.Max(0.1f, playerFire.CoolTime - Value);
+                    playerFire.CoolTime = Mathf.Max(0.1f, playerFire.CoolTime * 0.9f);
                 }
 
                 break;

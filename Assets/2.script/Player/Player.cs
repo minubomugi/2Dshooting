@@ -10,8 +10,8 @@ public class Player : MonoBehaviour
 
     [SerializeField] private GameObject _deathEffectPrefab;
 
-    // 아이템 획득 연출
-    [SerializeField] private GameObject[] _obtainEffectPrefab;
+    // 플레이어 피해 오디오
+    private AudioSource _damagedAudioSource;
 
     // getter/setter : 특정 데이터를 get/set 해주는 메서드
     public int GetHealth()
@@ -33,6 +33,11 @@ public class Player : MonoBehaviour
         set { _hp = value; }
     }
 
+    private void Awake()
+    {
+        _damagedAudioSource = GetComponent<AudioSource>();
+    }
+
     // 잘 설계된 클래스는 
     // - 필드(인스턴스 변수)와
     // - 필드에 잘못된 값이 할당되지 않게 막고(무결성을 유지하고), 정상적으로 동작하는 메소드
@@ -43,6 +48,8 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damage) // 기술지향 메소드라 지양됨
     {
         Health -= damage;
+        _damagedAudioSource.Play();
+
         if (Health <= 0)
         {
             Instantiate(_deathEffectPrefab, transform.position, Quaternion.identity);

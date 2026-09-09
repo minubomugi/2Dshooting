@@ -58,47 +58,11 @@ public class assignmnet0902 : MonoBehaviour
         _animator.SetInteger(name: "x", (int)nomalizedDirection.x);
         Vector2 newPosition = transform.position + (Vector3)nomalizedDirection * (_speed * Time.deltaTime);
 
-        //실습 과제 1 특정 영역 안에서만 캐릭터가 이동할 수 있게        
-        if (transform.position.y < -_limit)
-        {
-            v = -_limit;
-        }
+        //실습 과제 1,2 영역 제한 및 위치 이동
+        float x = Mathf.Repeat(transform.position.x + _limit, _limit * 2f) - _limit;
+        float y = Mathf.Clamp(transform.position.y, -_limit, _limit);
 
-        if (transform.position.x < -_limit)
-        {
-            h = -_limit;
-        }
-
-        if (transform.position.y > _limit)
-        {
-            v = _limit;
-        }
-
-        if (transform.position.x > _limit)
-        {
-            h = _limit;
-        }
-
-        //실습 과제 2 좌우 이동에 있어 쭈욱 이동시 반대쪽에서 나오기
-        if (transform.position.y < -_limit)
-        {
-            transform.position = new Vector3(transform.position.x, _limit, 0);
-        }
-
-        if (transform.position.x < -_limit)
-        {
-            transform.position = new Vector3(_limit, transform.position.y, 0);
-        }
-
-        if (transform.position.y > _limit)
-        {
-            transform.position = new Vector3(transform.position.x, -_limit, 0);
-        }
-
-        if (transform.position.x > _limit)
-        {
-            transform.position = new Vector3(-_limit, transform.position.y, 0);
-        }
+        transform.position = new Vector3(x, y, 0f);
 
         //이동
         transform.Translate(nomalizedDirection * (_speed * Time.deltaTime));
