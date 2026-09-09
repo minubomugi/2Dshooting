@@ -5,6 +5,13 @@ using Random = UnityEngine.Random;
 public abstract class Enemy : MonoBehaviour
 {
     [SerializeField] protected float _health = 100;
+
+    // 프로퍼티 생성
+    public float Health
+    {
+        get { return _health; }
+    }
+
     [SerializeField] protected float _movespeed;
 
     [SerializeField] protected float _damage;

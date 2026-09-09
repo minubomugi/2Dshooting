@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ItemObtain : MonoBehaviour
@@ -11,6 +12,9 @@ public class ItemObtain : MonoBehaviour
     //아이템 획득 연출
     private PlayerItemEffect _playerItemEffect;
 
+    // 애니메이션
+    private Animator _animator;
+    private bool _isAnimationPlayed = false;
 
     // 아이템 이동 속도
     [Header("아이템 이동 속도")] [SerializeField] private float _itemSpeed = 5f;
@@ -25,12 +29,11 @@ public class ItemObtain : MonoBehaviour
     private assignmnet0902 _move;
     private PlayerFire[] _playerFires;
 
-
     // 생성과 동시에 시간 저장 및 캐싱
     private void Start()
     {
         _dropTimer = Time.time;
-
+        _animator = GetComponentInChildren<Animator>();
         GameObject player = GameObject.FindWithTag("Player");
 
         if (player == null)
@@ -61,6 +64,8 @@ public class ItemObtain : MonoBehaviour
 
         if (Time.time - _dropTimer > _coolTimer)
         {
+            _animator.enabled = true;
+            _isAnimationPlayed = true;
             Vector2 direction =
                 ((Vector2)_playerTransform.position - (Vector2)transform.position).normalized;
 

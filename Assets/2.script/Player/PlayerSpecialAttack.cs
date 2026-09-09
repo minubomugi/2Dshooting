@@ -2,13 +2,16 @@ using UnityEngine;
 
 public class PlayerSpecialAttack : MonoBehaviour
 {
-    [SerializeField] private GameObject _playerSkillEffect;
-    [SerializeField] private GameObject _playerChargingEffect;
-    [SerializeField] private LayerMask _enemyLayer;
-    [SerializeField] private float _coolTime = 10f;
+    [Header("필살기")] [SerializeField] private GameObject _specialAttackPrefab;
+    [SerializeField] private Transform _specialAttackPoint;
+
+    [Header("차징 이펙트")] [SerializeField] private GameObject _playerChargingEffect;
+
+    [Header("쿨타임")] [SerializeField] private float _coolTime = 10f;
+
     private float _lastUseTime = -999f;
 
-    public void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.B))
         {
@@ -18,33 +21,19 @@ public class PlayerSpecialAttack : MonoBehaviour
 
     private void UseSpecialAttack()
     {
-        // 쿨 타임 지정
         if (Time.time - _lastUseTime < _coolTime)
         {
             return;
         }
 
-        // 연출 생성
-        GameObject effect = Instantiate(_playerSkillEffect, transform.position, Quaternion.identity);
-        Instantiate(_playerChargingEffect, transform.position, Quaternion.identity);
+        _lastUseTime = Time.time;
 
-        // 연출 범위 가져오기
-        Renderer effectRenderer = effect.GetComponentInChildren<Renderer>();
-        if (effectRenderer == null)
-            return;
+        // 차징 효과
+        GameObject chargingEffect = Instantiate(_playerChargingEffect, transform.position, Quaternion.identity);
 
-        // 렌더러가 차지하고있는 영역 가져옴
-        Bounds bounds = effectRenderer.bounds;
+        Destroy(chargingEffect, 1f);
 
-        // 연출 범위 만큼, 공격 판정
-        Collider2D[] colliders = Physics2D.OverlapBoxAll(bounds.center, bounds.size, 0f, _enemyLayer);
-        foreach (Collider2D hit in colliders)
-        {
-            Enemy enemy = hit.GetComponentInParent<Enemy>();
-            if (enemy != null)
-            {
-                Destroy(enemy.gameObject);
-            }
-        }
+        // 플레이어 앞에 필살기 생성
+        Instantiate(_specialAttackPrefab, _specialAttackPoint.position, Quaternion.identity);
     }
 }
