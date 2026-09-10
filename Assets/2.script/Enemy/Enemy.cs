@@ -71,6 +71,8 @@ public abstract class Enemy : MonoBehaviour
         {
             _isDead = true;
             Instantiate(_deathEffectPrefab, transform.position, Quaternion.identity);
+            ScoreManager scoreManager = GameObject.FindAnyObjectByType<ScoreManager>();
+            scoreManager.AddScore(100);
             Destroy(gameObject);
             Itemdrop();
         }

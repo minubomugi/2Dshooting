@@ -61,7 +61,6 @@ public class assignmnet0902 : MonoBehaviour
         float v = Input.GetAxis("Vertical");
         Vector2 nomalizedDirection = new Vector2(h, v).normalized;
         _animator.SetInteger(name: "x", (int)nomalizedDirection.x);
-        Vector2 newPosition = transform.position + (Vector3)nomalizedDirection * (_speed * Time.deltaTime);
 
         //실습 과제 1,2 영역 제한 및 위치 이동
         float x = Mathf.Repeat(transform.position.x + _limit, _limit * 2f) - _limit;

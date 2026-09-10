@@ -11,6 +11,14 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _bestScoreTextUI;
     [SerializeField] private TextMeshProUGUI _currentScoreTextUI;
 
+    // 프로퍼티 작성
+    public void AddScore(int score)
+    {
+        _currentScore = score;
+        if (_currentScore > _bestScore)
+            _bestScore = _currentScore;
+    }
+
     private void Update()
     {
         _bestScoreTextUI.text = $"Best Score: {_bestScore}";

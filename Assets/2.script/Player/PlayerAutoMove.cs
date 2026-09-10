@@ -114,9 +114,6 @@ public class PlayerAutoMove : MonoBehaviour
             _animator.SetInteger("x", -1);
         }
 
-        transform.Translate(
-            direction * (_autoMoveSpeed * Time.deltaTime),
-            Space.World
-        );
+        transform.Translate(direction * (_autoMoveSpeed * Time.deltaTime), Space.World);
     }
 }
