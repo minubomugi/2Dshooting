@@ -17,6 +17,11 @@ public class PlayerAutoMove : MonoBehaviour
     // 자동 이동 On/Off 확인용 아이
     private bool _autoMove = false;
 
+    public bool isAutoMove
+    {
+        get { return _autoMove; }
+    }
+
     private void Awake()
     {
         // 애니메이터 컴포넌트에 대한 참조를 가져와서 할당한다.
@@ -112,6 +117,10 @@ public class PlayerAutoMove : MonoBehaviour
         else if (direction.x < 0f)
         {
             _animator.SetInteger("x", -1);
+        }
+        else if (direction.x == 0f && isAutoMove)
+        {
+            _animator.SetInteger("x", 0);
         }
 
         transform.Translate(direction * (_autoMoveSpeed * Time.deltaTime), Space.World);

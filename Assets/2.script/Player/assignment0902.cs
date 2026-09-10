@@ -20,6 +20,8 @@ public class assignmnet0902 : MonoBehaviour
     // 애니메이터 참조
     [SerializeField] private Animator _animator;
 
+    private PlayerAutoMove _playerAutoMove;
+
     //플레이 방식도 있는데, 얘는 애니메이션을 처음부터 자꾸 실행하려고 하는 문제점이 있다.
 
     //객체가 생성될 때 한 번 실행
@@ -27,6 +29,7 @@ public class assignmnet0902 : MonoBehaviour
     {
         // 애니메이터 컴포넌트에 대한 참조를 가져와서 할당한다.
         _animator = GetComponent<Animator>();
+        _playerAutoMove = GetComponent<PlayerAutoMove>();
     }
 
     public float GetSpeed()
@@ -60,7 +63,20 @@ public class assignmnet0902 : MonoBehaviour
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
         Vector2 nomalizedDirection = new Vector2(h, v).normalized;
-        _animator.SetInteger(name: "x", (int)nomalizedDirection.x);
+
+        // 실제 입력이 있어야만 반응하는 시스템
+        if (nomalizedDirection.x > 0f)
+        {
+            _animator.SetInteger("x", 1);
+        }
+        else if (nomalizedDirection.x < 0f)
+        {
+            _animator.SetInteger("x", -1);
+        }
+        else if (nomalizedDirection.x == 0f && !_playerAutoMove.isAutoMove)
+        {
+            _animator.SetInteger("x", 0);
+        }
 
         //실습 과제 1,2 영역 제한 및 위치 이동
         float x = Mathf.Repeat(transform.position.x + _limit, _limit * 2f) - _limit;

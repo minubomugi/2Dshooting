@@ -66,7 +66,6 @@ public abstract class Enemy : MonoBehaviour
 
         _health -= damage;
         _animator.SetTrigger("Bullet Hit");
-        _damagedAudioSource.Play();
         if (_health <= 0)
         {
             _isDead = true;
