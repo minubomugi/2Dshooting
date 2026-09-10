@@ -1,11 +1,21 @@
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 
 public class BulletMove : MonoBehaviour
 {
     public float MoveSpeed;
     public float Damage;
+
+    private AudioSource _audioSource;
+
+    private void Awake()
+    {
+        _audioSource = GetComponent<AudioSource>();
+        _audioSource.pitch = Random.Range(-0.5f, 3f);
+        _audioSource.Play();
+    }
 
     private void Update()
     {
@@ -18,7 +28,7 @@ public class BulletMove : MonoBehaviour
         transform.Translate(direction * (MoveSpeed * Time.deltaTime));
     }
 
-    // Omtrigger 관련 함수
+    // Ontrigger 관련 함수
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Enemy"))

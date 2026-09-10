@@ -32,6 +32,9 @@ public abstract class Enemy : MonoBehaviour
     // 애니메이터 연결
     [SerializeField] private Animator _animator;
 
+    // 아이템 2개 나오는 거 수정위한 확인 규칙
+    private bool _isDead = false;
+
     private void Awake()
     {
         _animator = GetComponent<Animator>();
@@ -56,12 +59,17 @@ public abstract class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        Debug.Log(damage);
+        if (_isDead)
+        {
+            return;
+        }
+
         _health -= damage;
         _animator.SetTrigger("Bullet Hit");
         _damagedAudioSource.Play();
         if (_health <= 0)
         {
+            _isDead = true;
             Instantiate(_deathEffectPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
             Itemdrop();
