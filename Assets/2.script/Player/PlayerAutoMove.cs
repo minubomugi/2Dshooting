@@ -5,12 +5,23 @@ public class PlayerAutoMove : MonoBehaviour
     // 자동 이동 속도
     [Header("자동 이동 속도")] [SerializeField] private float _autoMoveSpeed = 5f;
 
+    // 적 탐지 범위
+    //[Header("적 탐지 Y 범위")] [SerializeField] private float _detectRange = 2f;
+
+    [SerializeField] private Animator _animator;
+
     //강사님 강의
     //[SerializeField] private float _speed = 100f;
 
 
     // 자동 이동 On/Off 확인용 아이
     private bool _autoMove = false;
+
+    private void Awake()
+    {
+        // 애니메이터 컴포넌트에 대한 참조를 가져와서 할당한다.
+        _animator = GetComponent<Animator>();
+    }
 
     private void Update()
     {
@@ -49,11 +60,17 @@ public class PlayerAutoMove : MonoBehaviour
         foreach (GameObject enemy in enemies)
         {
             //현재 탐지된 적들의 거리 구하기
-            float distancetoenemy = Vector2.Distance(transform.position, enemy.transform.position);
-            if (distancetoenemy < closeDistance)
+            float distanceToEnemy = Vector2.Distance(transform.position, enemy.transform.position);
+            // 탐지 범위 밖이면 무시
+            //if (distanceToEnemy > _detectRange)
+            //{
+            //    continue;
+            // }
+
+            if (distanceToEnemy < closeDistance)
             {
                 closestEnemy = enemy;
-                closeDistance = distancetoenemy;
+                closeDistance = distanceToEnemy;
             }
         }
 
@@ -61,14 +78,45 @@ public class PlayerAutoMove : MonoBehaviour
     }
 
     // 자동 이동
-    private void AutoMove(GameObject _enemy)
+    private void AutoMove(GameObject enemy)
     {
-        if (_enemy == null)
+        if (enemy == null)
         {
             return;
         }
 
-        Vector2 closestenemydirection = new Vector2(_enemy.transform.position.x - transform.position.x, 0f).normalized;
-        transform.Translate(closestenemydirection * (_autoMoveSpeed * Time.deltaTime), Space.World);
+        // 적과 나의 위치 차이
+        Vector2 diff = enemy.transform.position - transform.position;
+
+        // x축은 적 방향 그대로
+        Vector2 direction = diff;
+
+        // 적과 y축 거리가 3 이상이면 위로
+        // 3보다 작으면 아래로
+        if (diff.y >= 3f)
+        {
+            direction.y = 1f;
+        }
+        else
+        {
+            direction.y = -1f;
+        }
+
+        direction.Normalize();
+
+        // X축 이동 방향에 따라 애니메이션 변경
+        if (direction.x > 0f)
+        {
+            _animator.SetInteger("x", 1);
+        }
+        else if (direction.x < 0f)
+        {
+            _animator.SetInteger("x", -1);
+        }
+
+        transform.Translate(
+            direction * (_autoMoveSpeed * Time.deltaTime),
+            Space.World
+        );
     }
 }

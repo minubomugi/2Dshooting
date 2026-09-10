@@ -12,6 +12,11 @@ public class assignmnet0902 : MonoBehaviour
 
     [SerializeField] private float _limit;
 
+    public float Limit
+    {
+        get { return _limit; }
+    }
+
     // 애니메이터 참조
     [SerializeField] private Animator _animator;
 
