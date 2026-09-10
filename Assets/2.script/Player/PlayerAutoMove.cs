@@ -5,11 +5,27 @@ public class PlayerAutoMove : MonoBehaviour
     // 자동 이동 속도
     [Header("자동 이동 속도")] [SerializeField] private float _autoMoveSpeed = 5f;
 
+    //강사님 강의
+    //[SerializeField] private float _speed = 100f;
+
+
     // 자동 이동 On/Off 확인용 아이
     private bool _autoMove = false;
 
     private void Update()
     {
+        // 1. 타겟을 구한다.
+        //GameObject target = GameObject.FindWithTag("Enemy");
+        //if (target != null) return;
+
+        // 2. 방향을 구한다.
+        //Vector3 direction = target.transform.position - transform.position;
+        //direction.Normalize();
+        //direction.y = 0;
+
+        // 3. 속도에 맞게 이동한다.
+        //transform.Translate(Vector3.forward * _autoMoveSpeed * Time.deltaTime);
+
         if (Input.GetKeyDown(KeyCode.A))
         {
             _autoMove = !_autoMove;
