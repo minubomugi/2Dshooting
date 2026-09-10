@@ -14,7 +14,9 @@ public class ScoreManager : MonoBehaviour
     // 관리: 특정 데이터에 대한 무결성과 생성, 읽기, 수정, 삭제 등과 관련된 로직
     private int _bestScore;
     private int _currentScore = 0;
-    private int _lastRefreshScore = -1;
+
+    // 저장키 생성
+    private const string _saveKey = "BestScore";
 
     // UI 책임 추가(텍스트에서 프로 참조)
     [SerializeField] private TextMeshProUGUI _bestScoreTextUI;
@@ -39,22 +41,36 @@ public class ScoreManager : MonoBehaviour
 
         _currentScore += score;
         if (_currentScore > _bestScore)
+        {
             _bestScore = _currentScore;
+
+            // 저장: PlaterPrefs.set 시리즈를 이용해서 Int/float/string을 저장 가능하다.
+            // 내 컴퓨터 어딘가에 저장이 된다.
+            PlayerPrefs.SetInt(_saveKey, _bestScore);
+
+            // 저장 정보 날라갈 수도 있으니 이렇게 저장
+            PlayerPrefs.Save();
+        }
+
+        Refresh();
     }
 
-    private void Update()
+    private void Start()
     {
+        // 입력: Input
+        // 저장 및 불러오기: PlayerPrefs
+        if (PlayerPrefs.HasKey(_saveKey)) //GetInt(name, "0")으로 해서 값저장 역시 가능
+        {
+            _bestScore = PlayerPrefs.GetInt(_saveKey);
+        }
+
         Refresh();
     }
 
     private void Refresh()
     {
-        // 점수 출력 매번 반복하는 거 별로이기에 연산 줄이기
-        if (_lastRefreshScore == _currentScore) return;
-
         // 추가 점수 저장
         _bestScoreTextUI.text = $"Best Score: {_bestScore}";
         _currentScoreTextUI.text = $"Current Score: {_currentScore}";
-        _lastRefreshScore = _currentScore;
     }
 }
