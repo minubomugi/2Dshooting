@@ -1,13 +1,15 @@
-using System;
 using UnityEngine;
 
 public class ItemObtain : MonoBehaviour
 {
     // 아이템 획득 쿨타임
-    [Header("아이템 획득 쿨타임")] [SerializeField]
-    private float _coolTimer = 1.0f;
+    [Header("아이템 획득 쿨타임")]
+    [SerializeField] private float _coolTimer = 1.0f;
 
     private float _dropTimer;
+
+    // 아이템 가치 측정
+    [SerializeField] private int _value;
 
     //아이템 획득 연출
     private PlayerItemEffect _playerItemEffect;
@@ -19,11 +21,12 @@ public class ItemObtain : MonoBehaviour
     [SerializeField] private AudioSource _itemMoveAudioSource;
 
     // 아이템 이동 속도
-    [Header("아이템 이동 속도")] [SerializeField] private float _itemSpeed = 5f;
+    [Header("아이템 이동 속도")]
+    [SerializeField] private float _itemSpeed = 5f;
 
-    // 아이템 종류
-    [SerializeField] private ItemType Type;
-    [SerializeField] private float Value;
+    // SO활용
+    [SerializeField] private ItemSpawnDataTableSO _itemSpawnDataTable;
+    private ItemSpawnData _itemSpawnData;
 
     // 캐싱
     private Player _player;
@@ -86,11 +89,11 @@ public class ItemObtain : MonoBehaviour
             return;
         }
 
-        switch (Type)
+        switch (_itemSpawnData.ItemType)
         {
             case ItemType.Heal:
             {
-                _player.TakeDamage((int)(Value * -1));
+                _player.TakeDamage((int)(_value * -1));
                 Debug.Log($"플레이어 체력: {_player.GetHealth()}");
                 break;
             }
@@ -99,7 +102,7 @@ public class ItemObtain : MonoBehaviour
             {
                 if (_move != null)
                 {
-                    _move.Speed = Mathf.Min(10f, _move.Speed + Value);
+                    _move.Speed = Mathf.Min(10f, _move.Speed + _value);
                 }
 
                 break;
@@ -118,7 +121,7 @@ public class ItemObtain : MonoBehaviour
 
         if (_playerItemEffect != null)
         {
-            _playerItemEffect.PlayEffect(Type);
+            _playerItemEffect.PlayEffect(_itemSpawnData.ItemType);
         }
 
         Destroy(gameObject);
