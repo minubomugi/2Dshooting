@@ -178,9 +178,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemObtain
   _coolTimer: 1
+  _value: 1
+  _itemMoveAudioSource: {fileID: 0}
   _itemSpeed: 5
-  Type: 1
-  Value: 1
+  _itemSpawnDataTable: {fileID: 11400000, guid: 30f193557722d724ba027a9b1e809f45, type: 2}
 --- !u!95 &-1313232319565898210
 Animator:
   serializedVersion: 7

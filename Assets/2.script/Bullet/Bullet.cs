@@ -10,11 +10,27 @@ public class BulletMove : MonoBehaviour
 
     private AudioSource _audioSource;
 
+    [SerializeField] BulletType _bulletType;
+    public BulletType BulletType => _bulletType;
+
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
+    }
+
+    // 활성화 될 때마다 자동으로 호출되는 이벤트 함수
+    private void PlaySound()
+    {
+        Debug.Log("총알 활성화");
         _audioSource.pitch = Random.Range(-0.5f, 3f);
         _audioSource.Play();
+    }
+
+    public void OnSpawn()
+    {
+        // 프리펩이 풀에 의해서 활성화 될 때마다
+        // 초기화하는 코드들이 들어간다.
+        PlaySound();
     }
 
     private void Update()
@@ -38,7 +54,8 @@ public class BulletMove : MonoBehaviour
 
             //발사체 크기에 따른 데미지 차이 부여
             enemy.TakeDamage(Damage);
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
+            gameObject.SetActive(false);
         }
     }
 

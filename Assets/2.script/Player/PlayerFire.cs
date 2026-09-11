@@ -4,12 +4,13 @@ public class PlayerFire : MonoBehaviour
 {
     // 목표: 스페이스바를 누를 때마다 총알을 생성해서 발사하고 싶다.
     // 필요 속성
-    // 총알 프리팹
-    public GameObject BulletPrefab;
+
 
     //생성위치
     public Transform LeftFirePointTransform;
     public Transform RightFirePointTransform;
+    public Transform LeftSubFirePointTransform;
+    public Transform RightSubFirePointTransform;
 
     // 쿨타이머
     public float CoolTime = 0.5f;
@@ -52,10 +53,14 @@ public class PlayerFire : MonoBehaviour
         //2. 총알 프리팹을 생성한다.
         //Instantiate는 프리팹으로부터 복사해서 게임 오브젝트를 만들고 씬에 넣어주는 기능
 
-        //5. 실습과제 발사하는 곳 2개 만들기
-        GameObject leftBullet = Instantiate(BulletPrefab);
+        //5. 실습과제 발사하는 곳 4개 만들기
+        BulletMove leftBullet = BulletPool.Instance.GetBullet(BulletType.Main);
         leftBullet.transform.position = LeftFirePointTransform.position;
-        GameObject rightBullet = Instantiate(BulletPrefab);
+        BulletMove rightBullet = BulletPool.Instance.GetBullet(BulletType.Main);
         rightBullet.transform.position = RightFirePointTransform.position;
+        BulletMove LeftSubBullet = BulletPool.Instance.GetBullet(BulletType.Sub);
+        LeftSubBullet.transform.position = LeftSubFirePointTransform.position;
+        BulletMove RightSubBullet = BulletPool.Instance.GetBullet(BulletType.Sub);
+        RightSubBullet.transform.position = RightSubFirePointTransform.position;
     }
 }
