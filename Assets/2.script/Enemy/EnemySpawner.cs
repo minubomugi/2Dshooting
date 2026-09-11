@@ -5,15 +5,14 @@ public class EnemySpawner : MonoBehaviour
     //필요속성
     private GameObject _player;
 
+    [SerializeField] private EnemySpawnDataTableSO _spawnDataTable;
+
     // - 타이머
     [Header("스폰 간격")] [SerializeField] private float _spawninterval = 3f;
     private float _timer;
 
     // 뽑을 확률 설정
     private float[] _enemypercent = { 0.5f, 0.3f, 0.2f };
-
-    //생성할 프리팹
-    [Header("스폰할 적 프리팹")] [SerializeField] private Enemy[] _enemyPrefabs;
 
     private void Start()
     {
@@ -34,15 +33,6 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    // 09/04 실습 과제 2 확률에 따른 생성 및 플레이어가 존재할 때만 생성
-//    private void spawn()
-    //   {
-    //      if (GameObject.FindGameObjectWithTag("Player") != null)
-    //      {
-    //          Enemy enemy = Instantiate(_enemyPrefab);
-    //         enemy.transform.position = transform.position;
-    //      }
-    //  }
 
     // Todo: Scriptable Object를 이용해서 리팩토링
     // 이유: 배열을 사용했지만 각 아이템이 어떤 프리펩인지 알 수 없음
@@ -51,23 +41,33 @@ public class EnemySpawner : MonoBehaviour
     {
         if (_player)
         {
-            float _random = Random.Range(0f, 1f);
-            int _randomEnemy = 0;
-            if (_random < _enemypercent[0])
+            // 가중치 랜덤 선택(Weight)
+            // 각 아이템에 가중치를 부여하고, 가중치를 클수록 높은 확률로 선택되도록 하는 방식
+            // 가중치 기반 랜덤 선택 알고리즘
+
+            // 1. 추천할 수 있는 모든 가중치를 더한다.
+            int totalWeight = 0;
+            foreach (EnemySpawnData data in _spawnDataTable.Datas)
             {
-                _randomEnemy = 0;
-            }
-            else if (_random < _enemypercent[0] + _enemypercent[1])
-            {
-                _randomEnemy = 1;
-            }
-            else
-            {
-                _randomEnemy = 2;
+                totalWeight += data._weight;
             }
 
-            Enemy enemy = Instantiate(_enemyPrefabs[_randomEnemy]);
-            enemy.transform.position = transform.position;
+            // 2. 전체 가중치 범위에서 랜덤한 정수를 뽑는다.
+            float randomWeight = Random.Range(0f, totalWeight);
+
+            // 3. 가중치를 누적하면서 선택된 구간을 찾는다.
+            int cumulativeWeight = 0;
+            foreach (EnemySpawnData data in _spawnDataTable.Datas)
+            {
+                cumulativeWeight += data._weight;
+                if (randomWeight < cumulativeWeight)
+                {
+                    GameObject enemy = Instantiate(data._enemyPrefab);
+                    enemy.transform.position = transform.position;
+                }
+
+                return;
+            }
         }
     }
 }

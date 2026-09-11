@@ -45,6 +45,11 @@ public class PlayerAutoMove : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             _autoMove = !_autoMove;
+            if (!_autoMove)
+            {
+                _animator.SetInteger("x", 0);
+                return;
+            }
         }
 
         if (_autoMove)
