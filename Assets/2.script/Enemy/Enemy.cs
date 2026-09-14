@@ -23,17 +23,18 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] private GameObject _deathEffectPrefab;
 
     // 아이템 확률
-    [Header("아이템 스폰 확률")] [SerializeField] private float _dropPercent = 0.3f;
-
-    //생성 프리팹
-    [Header("스폰할 아이템 프리팹")] [SerializeField]
-    private GameObject[] _itemPrefabs;
+    [Header("아이템 스폰 확률")]
+    [SerializeField] private float _dropPercent = 0.3f;
 
     // 애니메이터 연결
     [SerializeField] private Animator _animator;
 
     // 아이템 2개 나오는 거 수정위한 확인 규칙
     private bool _isDead = false;
+
+    //생성 프리팹
+    [Header("스폰할 아이템 프리팹")]
+    [SerializeField] private ItemSpawnData[] _itemSpawnDatas;
 
     private void Awake()
     {
@@ -50,8 +51,22 @@ public abstract class Enemy : MonoBehaviour
     {
         if (Random.value < _dropPercent)
         {
-            int index = Random.Range(0, _itemPrefabs.Length);
-            Instantiate(_itemPrefabs[index], transform.position, Quaternion.identity);
+            int index = Random.Range(0, _itemSpawnDatas.Length);
+
+            ItemSpawnData itemSpawnData = _itemSpawnDatas[index];
+
+            GameObject item = Instantiate(
+                itemSpawnData.ItemPrefab,
+                transform.position,
+                Quaternion.identity
+            );
+
+            ItemObtain itemObtain = item.GetComponent<ItemObtain>();
+
+            if (itemObtain != null)
+            {
+                itemObtain.Initialize(itemSpawnData);
+            }
         }
     }
 

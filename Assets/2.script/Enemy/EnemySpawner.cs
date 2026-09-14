@@ -8,7 +8,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private EnemySpawnDataTableSO _spawnDataTable;
 
     // - 타이머
-    [Header("스폰 간격")] [SerializeField] private float _spawninterval = 3f;
+    [Header("스폰 간격")]
+    [SerializeField] private float _spawninterval = 3f;
+
     private float _timer;
 
     // 뽑을 확률 설정
@@ -64,9 +66,8 @@ public class EnemySpawner : MonoBehaviour
                 {
                     GameObject enemy = Instantiate(data._enemyPrefab);
                     enemy.transform.position = transform.position;
+                    return;
                 }
-
-                return;
             }
         }
     }

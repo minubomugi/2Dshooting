@@ -12,4 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd3877bfaf319694b85f27426943f929, type: 3}
   m_Name: ItemSpawnDataTable
   m_EditorClassIdentifier: Assembly-CSharp::ItemSpawnDataTableSO
-  _itemDatas: []
+  _itemDatas:
+  - _itemPrefab: {fileID: 6849770283754888880, guid: 9fa732a2c27e25245b5e2e0a06a974d7, type: 3}
+    _itemType: 0
+    _weight: 30
+    _speed: 5
+  - _itemPrefab: {fileID: 7894005088218978655, guid: 71b4142e07ba08e4396bdfc550d04e47, type: 3}
+    _itemType: 1
+    _weight: 15
+    _speed: 5
+  - _itemPrefab: {fileID: 7483503027990978194, guid: 8041dfca8cac88b4b93b9960ca87ea51, type: 3}
+    _itemType: 2
+    _weight: 15
+    _speed: 5

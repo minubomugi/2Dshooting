@@ -191,16 +191,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AimedEnemy
   _health: 50
-  _damagedAudioClip: {fileID: 8300000, guid: 4310474905e266640852f43bd609a1a4, type: 3}
   _movespeed: 5
   _damage: 10
   _deathEffectPrefab: {fileID: 2433282508537954060, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312, type: 3}
   _dropPercent: 0.3
-  _itemPrefabs:
-  - {fileID: 7483503027990978194, guid: 8041dfca8cac88b4b93b9960ca87ea51, type: 3}
-  - {fileID: 6849770283754888880, guid: 9fa732a2c27e25245b5e2e0a06a974d7, type: 3}
-  - {fileID: 7894005088218978655, guid: 71b4142e07ba08e4396bdfc550d04e47, type: 3}
   _animator: {fileID: 0}
+  _itemSpawnDatas:
+  - _itemPrefab: {fileID: 6849770283754888880, guid: 9fa732a2c27e25245b5e2e0a06a974d7, type: 3}
+    _itemType: 0
+    _weight: 30
+    _value: 1
+    _speed: 5
+  - _itemPrefab: {fileID: 7483503027990978194, guid: 8041dfca8cac88b4b93b9960ca87ea51, type: 3}
+    _itemType: 2
+    _weight: 20
+    _value: 1
+    _speed: 5
+  - _itemPrefab: {fileID: 7894005088218978655, guid: 71b4142e07ba08e4396bdfc550d04e47, type: 3}
+    _itemType: 1
+    _weight: 10
+    _value: 1
+    _speed: 5
 --- !u!95 &589151409154246977
 Animator:
   serializedVersion: 7

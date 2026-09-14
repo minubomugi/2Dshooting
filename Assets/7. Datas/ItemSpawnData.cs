@@ -7,6 +7,7 @@ public class ItemSpawnData
     [SerializeField] private GameObject _itemPrefab;
     [SerializeField] private ItemType _itemType;
     [SerializeField] private int _weight;
+    [SerializeField] private int _value;
     [SerializeField] private int _speed;
 
     //프로퍼티 설정
@@ -14,4 +15,5 @@ public class ItemSpawnData
     public ItemType ItemType => _itemType;
     public int Weight => _weight;
     public int Speed => _speed;
+    public int Value => _value;
 }

@@ -35,9 +35,10 @@ public class BulletPool : MonoBehaviour
 
         // 총알 프리팹 종류와 창고 ㅋ기 만큼 총알을 미리 만들어서 집어 넣는다.
         //창고 크기 만큼 총알을 미리 만들어서 집어 넣는다.
-        for (int i = 0; i < _bulletPool.Length; i++)
+        for (int i = 0; i < _bulletPool.GetLength(0); i++)
         {
             BulletMove bulletPrefab = _bulletPrefabs[i];
+
             for (int j = 0; j < _poolSize; j++)
             {
                 BulletMove bullet = Instantiate(bulletPrefab, gameObject.transform);

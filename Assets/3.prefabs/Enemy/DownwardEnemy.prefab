@@ -136,16 +136,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DownawadEnemy
   _health: 100
-  _damagedAudioClip: {fileID: 8300000, guid: a245ee5d75348c84a89ffb7992f1dc82, type: 3}
   _movespeed: 3
   _damage: 50
   _deathEffectPrefab: {fileID: 4593184484909914552, guid: 2e1e9506f5904a64b81744324fb7cd50, type: 3}
   _dropPercent: 0.3
-  _itemPrefabs:
-  - {fileID: 7483503027990978194, guid: 8041dfca8cac88b4b93b9960ca87ea51, type: 3}
-  - {fileID: 6849770283754888880, guid: 9fa732a2c27e25245b5e2e0a06a974d7, type: 3}
-  - {fileID: 7894005088218978655, guid: 71b4142e07ba08e4396bdfc550d04e47, type: 3}
   _animator: {fileID: 6621055531293388114}
+  _itemSpawnDatas:
+  - _itemPrefab: {fileID: 6849770283754888880, guid: 9fa732a2c27e25245b5e2e0a06a974d7, type: 3}
+    _itemType: 0
+    _weight: 30
+    _value: 1
+    _speed: 5
+  - _itemPrefab: {fileID: 7483503027990978194, guid: 8041dfca8cac88b4b93b9960ca87ea51, type: 3}
+    _itemType: 2
+    _weight: 20
+    _value: 1
+    _speed: 5
+  - _itemPrefab: {fileID: 7894005088218978655, guid: 71b4142e07ba08e4396bdfc550d04e47, type: 3}
+    _itemType: 1
+    _weight: 10
+    _value: 1
+    _speed: 5
 --- !u!61 &7619107529970132792
 BoxCollider2D:
   m_ObjectHideFlags: 0

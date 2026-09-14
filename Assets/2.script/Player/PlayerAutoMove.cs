@@ -3,7 +3,8 @@ using UnityEngine;
 public class PlayerAutoMove : MonoBehaviour
 {
     // 자동 이동 속도
-    [Header("자동 이동 속도")] [SerializeField] private float _autoMoveSpeed = 5f;
+    [Header("자동 이동 속도")]
+    [SerializeField] private float _autoMoveSpeed = 5f;
 
     // 적 탐지 범위
     //[Header("적 탐지 Y 범위")] [SerializeField] private float _detectRange = 2f;
@@ -61,6 +62,7 @@ public class PlayerAutoMove : MonoBehaviour
     private GameObject FindClosestEnemy()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        Debug.Log($"찾은 Enemy 수: {enemies.Length}");
 
         // 가장 가까이 오는 적으로 자동 이동
         GameObject closestEnemy = null;
@@ -90,6 +92,7 @@ public class PlayerAutoMove : MonoBehaviour
     // 자동 이동
     private void AutoMove(GameObject enemy)
     {
+        Debug.Log($"AutoMove 호출됨 / enemy: {enemy}");
         if (enemy == null)
         {
             return;
@@ -129,5 +132,6 @@ public class PlayerAutoMove : MonoBehaviour
         }
 
         transform.Translate(direction * (_autoMoveSpeed * Time.deltaTime), Space.World);
+        Debug.Log($"direction: {direction}, speed: {_autoMoveSpeed}");
     }
 }

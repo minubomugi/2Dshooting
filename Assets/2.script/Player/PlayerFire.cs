@@ -17,7 +17,12 @@ public class PlayerFire : MonoBehaviour
     public float CoolTimer = 0;
 
     //- 오토 모드
-    public bool AutoFireMode = false;
+    public bool _autoFireMode = false;
+
+    public void SetAuto(bool auto)
+    {
+        _autoFireMode = auto;
+    }
 
     private void Start()
     {
@@ -29,7 +34,7 @@ public class PlayerFire : MonoBehaviour
         // 오토 공격 모드 토글
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            AutoFireMode = !AutoFireMode; // 토글
+            _autoFireMode = !_autoFireMode; // 토글
         }
 
 
@@ -37,7 +42,7 @@ public class PlayerFire : MonoBehaviour
         CoolTimer -= Time.deltaTime;
 
         // 1. 쿨타이머가 0초이하이고 같이 스페이스바 누르거나 오토 모드리면
-        if (CoolTimer <= 0 && (Input.GetKeyDown(KeyCode.Space) || AutoFireMode))
+        if (CoolTimer <= 0 && (Input.GetKeyDown(KeyCode.Space) || _autoFireMode))
         {
             // 2. 발사
             Fire();
@@ -50,17 +55,19 @@ public class PlayerFire : MonoBehaviour
     //1. 스페이스바를 누르면
     private void Fire()
     {
-        //2. 총알 프리팹을 생성한다.
-        //Instantiate는 프리팹으로부터 복사해서 게임 오브젝트를 만들고 씬에 넣어주는 기능
-
-        //5. 실습과제 발사하는 곳 4개 만들기
         BulletMove leftBullet = BulletPool.Instance.GetBullet(BulletType.Main);
         leftBullet.transform.position = LeftFirePointTransform.position;
+
         BulletMove rightBullet = BulletPool.Instance.GetBullet(BulletType.Main);
         rightBullet.transform.position = RightFirePointTransform.position;
+
         BulletMove LeftSubBullet = BulletPool.Instance.GetBullet(BulletType.Sub);
         LeftSubBullet.transform.position = LeftSubFirePointTransform.position;
+
         BulletMove RightSubBullet = BulletPool.Instance.GetBullet(BulletType.Sub);
         RightSubBullet.transform.position = RightSubFirePointTransform.position;
+
+        Debug.Log($"Main : {leftBullet.GetInstanceID()} / {rightBullet.GetInstanceID()}");
+        Debug.Log($"Sub : {LeftSubBullet.GetInstanceID()} / {RightSubBullet.GetInstanceID()}");
     }
 }

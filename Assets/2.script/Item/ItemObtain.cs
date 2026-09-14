@@ -34,6 +34,13 @@ public class ItemObtain : MonoBehaviour
     private assignmnet0902 _move;
     private PlayerFire[] _playerFires;
 
+    public void Initialize(ItemSpawnData itemSpawnData)
+    {
+        _itemSpawnData = itemSpawnData;
+        _value = _itemSpawnData.Value;
+        _itemSpeed = _itemSpawnData.Speed;
+    }
+
     // 생성과 동시에 시간 저장 및 캐싱
     private void Start()
     {
@@ -80,12 +87,16 @@ public class ItemObtain : MonoBehaviour
     // 플레이어에게 닿았을 때 아이템 효과 적용
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log($"아이템 충돌: {other.name}");
+
         if (!other.CompareTag("Player"))
             return;
 
-        if (_player == null)
+        Debug.Log("Player와 아이템 충돌 성공");
+
+        if (_itemSpawnData == null)
         {
-            Debug.LogWarning("Player 컴포넌트를 찾을 수 없습니다.");
+            Debug.LogError("_itemSpawnData가 null입니다.");
             return;
         }
 
