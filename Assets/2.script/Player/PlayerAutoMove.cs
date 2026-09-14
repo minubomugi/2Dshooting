@@ -29,6 +29,14 @@ public class PlayerAutoMove : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
+    private void OnDisable()
+    {
+        if (_animator != null)
+        {
+            _animator.SetInteger("x", 0);
+        }
+    }
+
     private void Update()
     {
         // 1. 타겟을 구한다.
@@ -43,20 +51,8 @@ public class PlayerAutoMove : MonoBehaviour
         // 3. 속도에 맞게 이동한다.
         //transform.Translate(Vector3.forward * _autoMoveSpeed * Time.deltaTime);
 
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            _autoMove = !_autoMove;
-            if (!_autoMove)
-            {
-                _animator.SetInteger("x", 0);
-                return;
-            }
-        }
 
-        if (_autoMove)
-        {
-            AutoMove(FindClosestEnemy());
-        }
+        AutoMove(FindClosestEnemy());
     }
 
     private GameObject FindClosestEnemy()
