@@ -127,7 +127,7 @@ public class PlayerAutoMove : MonoBehaviour
             _animator.SetInteger("x", 0);
         }
 
-        transform.Translate(direction * (_autoMoveSpeed * Time.deltaTime), Space.World);
-        Debug.Log($"direction: {direction}, speed: {_autoMoveSpeed}");
+        float _finalAutoMoveSpeed = _autoMoveSpeed + UpgradeManager.Instance.Upgrades[2].CurrentValue;
+        transform.Translate(direction * (_finalAutoMoveSpeed * Time.deltaTime), Space.World);
     }
 }

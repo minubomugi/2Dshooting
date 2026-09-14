@@ -84,7 +84,8 @@ public class assignmnet0902 : MonoBehaviour
 
         transform.position = new Vector3(x, y, 0f);
 
+        float _finalSpeed = _speed + UpgradeManager.Instance.Upgrades[2].CurrentValue;
         //이동
-        transform.Translate(nomalizedDirection * (_speed * Time.deltaTime));
+        transform.Translate(nomalizedDirection * (_finalSpeed * Time.deltaTime));
     }
 }

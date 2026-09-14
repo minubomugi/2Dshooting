@@ -123,7 +123,8 @@ public class ItemObtain : MonoBehaviour
             {
                 foreach (PlayerFire playerFire in _playerFires)
                 {
-                    playerFire.CoolTime = Mathf.Max(0.1f, playerFire.CoolTime * 0.9f);
+                    playerFire.CoolTime = Mathf.Max(0.1f,
+                        playerFire.CoolTime - UpgradeManager.Instance.Upgrades[1].CurrentValue);
                 }
 
                 break;

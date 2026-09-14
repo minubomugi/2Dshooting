@@ -51,8 +51,10 @@ public class BulletMove : MonoBehaviour
             // Get component<타입>() -> 게임 오브젝트가 갖고 있는 컴포넌트를참조
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
 
+            float finalDamage = Damage + UpgradeManager.Instance.Upgrades[0].CurrentValue;
+
             //발사체 크기에 따른 데미지 차이 부여
-            enemy.TakeDamage(Damage);
+            enemy.TakeDamage(finalDamage);
             //Destroy(this.gameObject);
             gameObject.SetActive(false);
         }

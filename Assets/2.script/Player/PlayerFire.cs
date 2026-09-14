@@ -38,7 +38,7 @@ public class PlayerFire : MonoBehaviour
         }
 
 
-        // 0.쿨타이머 감소
+        // 0.쿨타이머 감소 및 아이템에 따른 추가 감소
         CoolTimer -= Time.deltaTime;
 
         // 1. 쿨타이머가 0초이하이고 같이 스페이스바 누르거나 오토 모드리면
@@ -48,7 +48,8 @@ public class PlayerFire : MonoBehaviour
             Fire();
 
             // 3. 쿠라이머 초기화
-            CoolTimer = CoolTime;
+            float finalFireRate = Mathf.Max(0.1f, CoolTime - UpgradeManager.Instance.Upgrades[1].CurrentValue);
+            CoolTimer = finalFireRate;
         }
     }
 
