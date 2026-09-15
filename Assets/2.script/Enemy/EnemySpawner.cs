@@ -13,8 +13,8 @@ public class EnemySpawner : MonoBehaviour
 
     private float _timer;
 
-    // 뽑을 확률 설정
-    private float[] _enemypercent = { 0.5f, 0.3f, 0.2f };
+    // 보스 생성 후 일시 정지를 위한 bool 함수 추가
+    private bool _isBossSpawn = false;
 
     private void Start()
     {
@@ -23,6 +23,8 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
+        if (_isBossSpawn) return;
+
         _timer += Time.deltaTime;
 
         if (_timer >= _spawninterval)
@@ -33,6 +35,19 @@ public class EnemySpawner : MonoBehaviour
 
             RandomSpawn();
         }
+    }
+
+    public void StopSpawn()
+    {
+        _isBossSpawn = true;
+    }
+
+    public void StartSpawn()
+    {
+        _isBossSpawn = false;
+        //보스가 죽은 후 바로 적이 등장하는 것을 방지
+        _timer = 0;
+        _spawninterval = Random.Range(1f, 3f);
     }
 
 
