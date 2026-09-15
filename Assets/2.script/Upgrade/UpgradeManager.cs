@@ -14,6 +14,8 @@ public class UpgradeManager : MonoBehaviour
 
     [SerializeField] private UI_Upgrade[] _uiUpgrades;
 
+    private const string UpgradeSaveDataKey = "UpgradeSaveData";
+
     // 싱글톤 적용
     private void Awake()
     {
@@ -66,20 +68,33 @@ public class UpgradeManager : MonoBehaviour
     {
         //데이터 저장은 유의미한 정보만 저장을 한다 ex) 레벨(계산 가능)
         // 그래서 여기선 레벨만 저장함
+
+        UpgradeSaveData saveData = new UpgradeSaveData(_upgrades.Length);
         for (int i = 0; i < _upgrades.Length; i++)
         {
-            PlayerPrefs.SetInt($"Upgrade.{i}.Level", _upgrades[i].Level);
+            saveData._name[i] = _upgrades[i].Name;
+            saveData._level[i] = _upgrades[i].Level;
         }
+        // 게임 데이터의 경우 확장자가 게임별로 다 다르다.
+        // json 포멧으로 문자열 전환
+        // 키와 밸루 형태로 저장한 형태
 
+        string text = JsonUtility.ToJson(saveData);
+        PlayerPrefs.SetString(UpgradeSaveDataKey, text);
         PlayerPrefs.Save();
     }
 
     private void Load()
     {
+        if (PlayerPrefs.HasKey(UpgradeSaveDataKey)) return;
+
+        string json = PlayerPrefs.GetString(UpgradeSaveDataKey, string.Empty);
+        UpgradeSaveData saveData = JsonUtility.FromJson<UpgradeSaveData>(json);
+
         for (int i = 0; i < _upgrades.Length; i++)
         {
-            int level = PlayerPrefs.GetInt($"Upgrade.{i}.Level", 1);
-            _upgrades[i].SetLevel(level);
+            Debug.Log($"{_upgrades[i].Name} 로드 완료!");
+            _upgrades[i].SetLevel(saveData._level[i]);
         }
     }
 }
