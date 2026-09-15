@@ -2,18 +2,22 @@ using UnityEngine;
 
 public class PlayerSpecialAttack : MonoBehaviour
 {
-    [Header("필살기")] [SerializeField] private GameObject _specialAttackPrefab;
+    [Header("필살기")]
+    [SerializeField] private GameObject _specialAttackPrefab;
+
     [SerializeField] private Transform _specialAttackPoint;
 
-    [Header("차징 이펙트")] [SerializeField] private GameObject _playerChargingEffect;
+    [Header("차징 이펙트")]
+    [SerializeField] private GameObject _playerChargingEffect;
 
-    [Header("쿨타임")] [SerializeField] private float _coolTime = 10f;
+    [Header("쿨타임")]
+    [SerializeField] private float _coolTime = 10f;
 
     private float _lastUseTime = -999f;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B))
+        if (SimpleInput.GetButtonDown("Bomb"))
         {
             UseSpecialAttack();
         }
