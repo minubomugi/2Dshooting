@@ -78,6 +78,7 @@ public class UpgradeManager : MonoBehaviour
         // 게임 데이터의 경우 확장자가 게임별로 다 다르다.
         // json 포멧으로 문자열 전환
         // 키와 밸루 형태로 저장한 형태
+        // todo 암호화 복호화 진행
 
         string text = JsonUtility.ToJson(saveData);
         PlayerPrefs.SetString(UpgradeSaveDataKey, text);

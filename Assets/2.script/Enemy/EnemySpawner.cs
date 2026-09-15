@@ -6,6 +6,7 @@ public class EnemySpawner : MonoBehaviour
     private GameObject _player;
 
     [SerializeField] private EnemySpawnDataTableSO _spawnDataTable;
+    [SerializeField] private EnemyBalanceTableSO _balanceTable;
 
     // - 타이머
     [Header("스폰 간격")]
@@ -81,9 +82,30 @@ public class EnemySpawner : MonoBehaviour
                 {
                     GameObject enemy = Instantiate(data._enemyPrefab);
                     enemy.transform.position = transform.position;
-                    return;
+                    enemy.GetComponent<Enemy>().SetHealthBalance(GetHealthMultiplier());
+                    break;
                 }
             }
         }
+    }
+
+    private float GetHealthMultiplier()
+    {
+        if (_player)
+        {
+            int bestScore = ScoreManager.Instance.BestScore;
+
+
+            foreach (EnemyBalanceData data in _balanceTable.Datas)
+            {
+                if (bestScore > data.RequiredScore)
+                {
+                    return data.HealthMultiplier;
+                }
+            }
+        }
+
+        int lastIndex = _balanceTable.Datas.Length - 1;
+        return _balanceTable.Datas[lastIndex].HealthMultiplier;
     }
 }

@@ -15,6 +15,7 @@ public class ScoreManager : MonoBehaviour
     private int _bestScore;
     private int _currentScore = 0;
     public int _score => _currentScore;
+    public int BestScore => _bestScore;
 
     public void SpendScore(int amount)
     {

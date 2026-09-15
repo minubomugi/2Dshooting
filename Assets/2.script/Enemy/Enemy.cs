@@ -4,12 +4,14 @@ using Random = UnityEngine.Random;
 
 public abstract class Enemy : MonoBehaviour
 {
-    [SerializeField] protected float _health = 100;
+    [SerializeField] private float _basehealth = 100; // 적 기준 체력
+    [SerializeField] protected float _health = 100; // 적 성장 체력
 
     // 프로퍼티 생성
     public float Health
     {
         get { return _health; }
+        set { _health = value; }
     }
 
     //오디오 생성
@@ -45,6 +47,12 @@ public abstract class Enemy : MonoBehaviour
     private void Update()
     {
         Move();
+    }
+
+    public void SetHealthBalance(float Multiplier)
+    {
+        // 체력 초기화
+        _health = Multiplier * _basehealth;
     }
 
     private void Itemdrop()
