@@ -60,8 +60,8 @@ public class assignmnet0902 : MonoBehaviour
     private void Move()
     {
         //똑같이 이동할 수 있는 거 처리
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        float h = SimpleInput.GetAxis("Horizontal");
+        float v = SimpleInput.GetAxis("Vertical");
         Vector2 nomalizedDirection = new Vector2(h, v).normalized;
 
         // 실제 입력이 있어야만 반응하는 시스템
