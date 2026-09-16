@@ -2558,6 +2558,7 @@ GameObject:
   - component: {fileID: 1417253602}
   - component: {fileID: 1417253601}
   - component: {fileID: 1417253604}
+  - component: {fileID: 1417253605}
   m_Layer: 5
   m_Name: Bomb
   m_TagString: Untagged
@@ -2681,6 +2682,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: SimpleInput.Runtime::SimpleInputNamespace.ButtonInputUI
   button:
     m_key: Bomb
+    value: 0
+--- !u!114 &1417253605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417253598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc8d2f3cf1118bf4ab1c5f540a08bbd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: SimpleInput.Runtime::SimpleInputNamespace.KeyInputUI
+  key:
+    m_key: 98
     value: 0
 --- !u!224 &1421526840 stripped
 RectTransform:
@@ -4162,9 +4178,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 2585730359333395145, guid: 1cce804efea7fe941b7092dd30e20607, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 58e57c631e70ef9469a0cee0f4743779, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -4192,8 +4208,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9d94ee114d1e764cb27118556df8380, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_AutoButton
-  _onSprite: {fileID: 2585730359333395145, guid: 1cce804efea7fe941b7092dd30e20607, type: 3}
-  _offSprite: {fileID: -1196866263293263332, guid: c47895bc23104764c8ad0326f1d4a56c, type: 3}
+  _onSprite: {fileID: 21300000, guid: 6baafc3382eb491428f2cf8657b75d69, type: 3}
+  _offSprite: {fileID: 21300000, guid: 58e57c631e70ef9469a0cee0f4743779, type: 3}
 --- !u!82 &2075167140
 AudioSource:
   m_ObjectHideFlags: 0

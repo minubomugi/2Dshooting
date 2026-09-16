@@ -17,7 +17,8 @@ public class PlayerSpecialAttack : MonoBehaviour
 
     private void Update()
     {
-        if (SimpleInput.GetButtonDown("Bomb"))
+        if (SimpleInput.GetKeyDown(KeyCode.B) ||
+            SimpleInput.GetButtonDown("Bomb"))
         {
             UseSpecialAttack();
         }

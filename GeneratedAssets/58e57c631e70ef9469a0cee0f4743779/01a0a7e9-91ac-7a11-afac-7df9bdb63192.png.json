@@ -1,0 +1,41 @@
+{
+    "asset": "58e57c631e70ef9469a0cee0f4743779",
+    "fileName": "01a0a7e9-91ac-7a11-afac-7df9bdb63192.png",
+    "prompt": "16-bit retro pixel art game UI button icon for 'Auto Attack OFF'. A gray muted sword icon with bold pixel border, inactive disabled state, retro 2D pixel art style, retro arcade game UI, matching the pixel art style of Auto ON icon, isolated on solid white background.",
+    "negativePrompt": "",
+    "model": "gemini-3.1-flash",
+    "modelName": "Gemini 3.1 Nano Banana 2",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelatePixelGridSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": [
+            {
+                "doodleReferenceType": 7,
+                "doodle": [],
+                "label": "Image",
+                "strength": 0.25,
+                "invertStrength": false,
+                "assetReferenceGuid": "c47895bc23104764c8ad0326f1d4a56c",
+                "unlabeledIndex": -1
+            }
+        ]
+    },
+    "upscaleFactor": 0,
+    "dimensions": {
+        "width": 1024,
+        "height": 1024
+    },
+    "spriteSheet": false,
+    "duration": 0.0,
+    "dynamicParams": {
+        "serializedData": []
+    }
+}

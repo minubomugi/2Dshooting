@@ -1,0 +1,41 @@
+{
+    "asset": "6baafc3382eb491428f2cf8657b75d69",
+    "fileName": "01a0a7e8-bbc3-7493-a999-382228b18d6c.png",
+    "prompt": "16-bit retro pixel art game UI button icon for 'Auto Attack ON'. A glowing golden sword icon with bold pixel border, vibrant green and gold highlight glow indicating active auto combat mode, clean 2D pixel art style, retro arcade game UI, isolated on solid white background.",
+    "negativePrompt": "",
+    "model": "gemini-3.1-flash",
+    "modelName": "Gemini 3.1 Nano Banana 2",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelatePixelGridSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": [
+            {
+                "doodleReferenceType": 7,
+                "doodle": [],
+                "label": "Image",
+                "strength": 0.25,
+                "invertStrength": false,
+                "assetReferenceGuid": "1cce804efea7fe941b7092dd30e20607",
+                "unlabeledIndex": -1
+            }
+        ]
+    },
+    "upscaleFactor": 0,
+    "dimensions": {
+        "width": 1024,
+        "height": 1024
+    },
+    "spriteSheet": false,
+    "duration": 0.0,
+    "dynamicParams": {
+        "serializedData": []
+    }
+}
